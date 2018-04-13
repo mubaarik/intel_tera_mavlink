@@ -41,7 +41,7 @@
 #include <mavlink.h>
 
 #include "log.h"
-#include "util.h"
+//#include "util.h"
 
 int Mavlink_TCP::init(const char *ip, unsigned long port)
 {
