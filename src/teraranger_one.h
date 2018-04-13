@@ -8,7 +8,7 @@
 #include <mavlink.h>
 #include "mavlink_tcp.h"
 #include <string>
-#include <serial/serial.h>
+#include "serial/serial.h"
 //#include <teraranger/TerarangerOneConfig.h>
 #include <teraranger/helper_lib.h>
 #include <limits>
