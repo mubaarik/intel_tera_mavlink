@@ -6,7 +6,7 @@ find_package(serial REQUIRED)
 set(MAVLINK_DIALECT common)
 
 
-add_executable(intel_tera_mavlink src/teraranger.cpp src/helper_lib.cpp src/mavlink_tcp.cpp src/main.cpp)
+add_executable(intel_tera_mavlink src/teraranger_one.cpp src/helper_lib.cpp src/mavlink_tcp.cpp src/main.cpp)
 
 set_property(TARGET intel_tera_mavlink PROPERTY CXX_STANDARD 11)
 set_property(TARGET intel_tera_mavlink PROPERTY COMPILE_FLAGS "-Wall -Wextra -Wshadow -Wundef -Wformat=2 -Wlogical-op -Wsign-compare -Wformat-security -Wformat-nonliteral -Wpointer-arith -Winit-self -Wmissing-noreturn -Wstrict-aliasing=2 -Wno-overlength-strings -Wno-missing-field-initializers -Wuninitialized")
