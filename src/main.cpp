@@ -1,4 +1,4 @@
-#include <teraranger/teraranger_one.h>
+#include "teraranger_one.h"
 #include "log.h"
 
 int main (int argc, char *argv[])
