@@ -1,4 +1,4 @@
-#include <teraranger/teraranger_one.h>
+#include <teraranger_one.h>
 
 namespace teraranger
 {

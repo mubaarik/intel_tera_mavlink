@@ -1,4 +1,4 @@
-#include <teraranger/helper_lib.h>
+#include <helper_lib.h>
 
 namespace teraranger
 {
