@@ -10,6 +10,7 @@
 #include <string>
 #include <serial/serial.h>
 //#include <teraranger/TerarangerOneConfig.h>
+#include "log.h"
 #include "helper_lib.h"
 #include <limits>
 
