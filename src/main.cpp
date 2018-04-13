@@ -4,8 +4,8 @@
 int main (int argc, char *argv[])
 {
 	teraranger::TerarangerOne _teraOne;
-	_teraOne.init()
-	_teraOne.run()
+	_teraOne.init();
+	_teraOne.run();
 	_teraOne.shutdown();
 
 
