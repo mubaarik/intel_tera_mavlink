@@ -53,7 +53,7 @@ public:
   Mavlink_TCP *_mavlink;
 
   serial::Serial serial_port_;
-  boost::function<void(uint8_t)> serial_data_callback_function_;
+  //boost::function<void(uint8_t)> serial_data_callback_function_;
 
   std::string portname_;
   //std::string frame_id_;

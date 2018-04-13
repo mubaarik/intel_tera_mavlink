@@ -5,24 +5,7 @@ namespace teraranger
 static volatile bool _should_run;
 TerarangerOne::TerarangerOne()
 {
-  _mavlink = new Mavlink_TCP();
-  if (!_mavlink) {
-    ERROR("No memory to allocate Mavlink_TCP");
-    goto mavlink_memory_error;
-  }
   
-  if (_mavlink->init(mavlink_tcp_ip, mavlink_tcp_port)) {
-    ERROR("Unable to initialize Mavlink_TCP");
-    goto mavlink_init_error;
-  }
-
-  return 0;
-
-  mavlink_init_error:
-    delete;
-  mavlink_memory_error:
-    delete;
-    return -1;
   portname_ = std::string("/dev/ttyUSB0");
   _should_run = true;
   // Serial Port init
@@ -54,6 +37,27 @@ TerarangerOne::TerarangerOne()
 
 TerarangerOne::~TerarangerOne()
 {
+}
+TerarangerOne::init(){
+  _mavlink = new Mavlink_TCP();
+  if (!_mavlink) {
+    ERROR("No memory to allocate Mavlink_TCP");
+    goto mavlink_memory_error;
+  }
+  
+  if (_mavlink->init(mavlink_tcp_ip, mavlink_tcp_port)) {
+    ERROR("Unable to initialize Mavlink_TCP");
+    goto mavlink_init_error;
+  }
+
+  return 0;
+
+  mavlink_init_error:
+    delete;
+  mavlink_memory_error:
+    delete;
+    return -1;
+
 }
 
 void TerarangerOne::serialDataCallback(uint8_t single_character)

@@ -48,7 +48,7 @@ public:
 
 	int init(const char *ip, unsigned long port);
 
-	//void handle_read() override;
+	void handle_read() override;
 	bool handle_canwrite() override;
 
 	//void highres_imu_msg_subscribe(void (*callback)(const mavlink_highres_imu_t *msg, void *data), const void *data);
