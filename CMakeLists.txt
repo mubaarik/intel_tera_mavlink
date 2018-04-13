@@ -5,7 +5,7 @@ project(intel_tera_mavlink)
 find_package(serial REQUIRED)
 set(MAVLINK_DIALECT common)
 
-
+add_subdirectory(modules/serial)
 add_executable(intel_tera_mavlink src/teraranger_one.cpp src/helper_lib.cpp src/mavlink_tcp.cpp src/main.cpp)
 
 set_property(TARGET intel_tera_mavlink PROPERTY CXX_STANDARD 11)
@@ -13,7 +13,7 @@ set_property(TARGET intel_tera_mavlink PROPERTY COMPILE_FLAGS "-Wall -Wextra -Ws
 
 target_include_directories(intel_tera_mavlink PUBLIC ${CMAKE_SOURCE_DIR}/modules/mavlink_c/${MAVLINK_DIALECT})
 
-target_include_directories(intel_tera_mavlink PUBLIC ${CMAKE_SOURCE_DIR}/modules/serial)
+target_link_libraries(intel_tera_mavlink serial)
 install(TARGETS intel_tera_mavlink DESTINATION bin)
 
 configure_file(aero-teraranger.service.in aero-teraranger.service)
