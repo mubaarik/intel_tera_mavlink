@@ -5,7 +5,7 @@ project(intel_tera_mavlink)
 find_package(serial REQUIRED)
 set(MAVLINK_DIALECT common)
 
-
+add_subdirectory(modules/serial)
 add_executable(intel_tera_mavlink src/teraranger_one.cpp src/helper_lib.cpp src/mavlink_tcp.cpp src/main.cpp)
 
 set_property(TARGET intel_tera_mavlink PROPERTY CXX_STANDARD 11)
