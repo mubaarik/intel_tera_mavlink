@@ -89,7 +89,7 @@ Mavlink_TCP::~Mavlink_TCP()
 	_fd = -1;
 }
 void Mavlink_TCP::handle_read(){
-	return false;
+	int x = 0;
 }
 bool Mavlink_TCP::handle_canwrite()
 {
