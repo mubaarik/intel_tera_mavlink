@@ -38,7 +38,7 @@ TerarangerOne::TerarangerOne()
 TerarangerOne::~TerarangerOne()
 {
 }
-TerarangerOne::init(){
+int TerarangerOne::init(){
   _mavlink = new Mavlink_TCP();
   if (!_mavlink) {
     ERROR("No memory to allocate Mavlink_TCP");
@@ -53,9 +53,10 @@ TerarangerOne::init(){
   return 0;
 
   mavlink_init_error:
-    delete;
+    delete _mavlink;
+    return -1;
   mavlink_memory_error:
-    delete;
+    delete _mavlink;
     return -1;
 
 }
