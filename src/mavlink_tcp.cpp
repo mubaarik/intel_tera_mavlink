@@ -100,8 +100,8 @@ int Mavlink_TCP::distance_sensor_msg_write(mavlink_distance_sensor_t *ds_msg)
 {
 	mavlink_message_t msg;
 	uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
-
-	mavlink_msg_optical_flow_rad_encode(_system_id, _component_id, &msg, ds_msg);
+	
+	mavlink_msg_distance_sensor_encode(_system_id, _component_id, &msg, ds_msg);
 	uint16_t len = mavlink_msg_to_send_buffer(buffer, &msg);
 
 	ssize_t r = sendto(_fd, buffer, len, 0, (struct sockaddr *)&_sockaddr, sizeof(_sockaddr));
