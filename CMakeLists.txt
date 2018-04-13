@@ -13,7 +13,7 @@ set_property(TARGET intel_tera_mavlink PROPERTY COMPILE_FLAGS "-Wall -Wextra -Ws
 
 target_include_directories(intel_tera_mavlink PUBLIC ${CMAKE_SOURCE_DIR}/modules/mavlink_c/${MAVLINK_DIALECT})
 
-target_include_directories(ntel_tera_mavlink PUBLIC ${CMAKE_SOURCE_DIR}/modules/serial)
+target_include_directories(intel_tera_mavlink PUBLIC ${CMAKE_SOURCE_DIR}/modules/serial)
 install(TARGETS intel_tera_mavlink DESTINATION bin)
 
 configure_file(aero-teraranger.service.in aero-teraranger.service)
