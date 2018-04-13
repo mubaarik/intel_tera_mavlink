@@ -10,7 +10,7 @@
 #include <string>
 #include <serial/serial.h>
 //#include <teraranger/TerarangerOneConfig.h>
-#include <helper_lib.h>
+#include "helper_lib.h"
 #include <limits>
 
 #define OUT_OF_RANGE_VALUE 0
