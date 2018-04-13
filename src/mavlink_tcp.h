@@ -53,7 +53,7 @@ public:
 
 	//void highres_imu_msg_subscribe(void (*callback)(const mavlink_highres_imu_t *msg, void *data), const void *data);
 
-	int distance_sensor_msg_write(mavlink_optical_flow_rad_t *msg);
+	int distance_sensor_msg_write(mavlink_distance_sensor_t *msg);
 	//int set_highres_rate(float interval_us);
 private:
 	struct sockaddr_in _sockaddr;
