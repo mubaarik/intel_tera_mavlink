@@ -1,54 +1,18 @@
-cmake_minimum_required(VERSION 2.8.3)
-SET(CMAKE_CXX_STANDARD 11)
-SET(CMAKE_CXX_STANDARD_REQUIRED ON)
-project(teraranger)
+cmake_minimum_required(VERSION 3.1)
 
-find_package(catkin REQUIRED COMPONENTS
-  roscpp
-  sensor_msgs
-  std_msgs
-  dynamic_reconfigure
-  serial
-)
+project(intel_tera_mavlink)
 
-find_package(Boost REQUIRED COMPONENTS system thread)
+find_package(serial REQUIRED)
+set(MAVLINK_DIALECT common)
 
-generate_dynamic_reconfigure_options(
-  cfg/TerarangerOne.cfg
-  cfg/TerarangerDuo.cfg
-)
 
-catkin_package(
-  INCLUDE_DIRS include
-  LIBRARIES ${PROJECT_NAME}
-  CATKIN_DEPENDS roscpp sensor_msgs std_msgs dynamic_reconfigure serial
-  DEPENDS Boost
-)
+add_executable(intel_tera_mavlink src/teraranger.cpp src/helper_lib.cpp src/mavlink_tcp.cpp src/main.cpp)
 
-include_directories(
-  include
-  ${Boost_INCLUDE_DIRS}
-  ${catkin_INCLUDE_DIRS}
-)
+set_property(TARGET intel_tera_mavlink PROPERTY CXX_STANDARD 11)
+set_property(TARGET intel_tera_mavlink PROPERTY COMPILE_FLAGS "-Wall -Wextra -Wshadow -Wundef -Wformat=2 -Wlogical-op -Wsign-compare -Wformat-security -Wformat-nonliteral -Wpointer-arith -Winit-self -Wmissing-noreturn -Wstrict-aliasing=2 -Wno-overlength-strings -Wno-missing-field-initializers -Wuninitialized")
 
-add_executable(evo src/teraranger_evo.cpp src/helper_lib.cpp)
-target_link_libraries(evo ${catkin_LIBRARIES} ${Boost_LIBRARIES})
-#add_dependencies(evo ${${PROJECT_NAME}_EXPORTED_TARGETS})
-#add_dependencies(evo ${PROJECT_NAME}_gencfg)
+target_include_directories(intel_tera_mavlink PUBLIC ${CMAKE_SOURCE_DIR}/modules/mavlink_c/${MAVLINK_DIALECT})
+target_link_libraries(intel_tera_mavlink serial)
+install(TARGETS intel_tera_mavlink DESTINATION bin)
 
-add_executable(duo src/teraranger_duo.cpp src/helper_lib.cpp)
-add_dependencies(duo  ${catkin_EXPORTED_TARGETS})
-add_dependencies(duo ${PROJECT_NAME}_gencfg)
-target_link_libraries(duo ${catkin_LIBRARIES} ${Boost_LIBRARIES})
-
-add_executable(one src/teraranger_one.cpp src/helper_lib.cpp)
-add_dependencies(one  ${catkin_EXPORTED_TARGETS})
-add_dependencies(one ${PROJECT_NAME}_gencfg)
-target_link_libraries(one ${catkin_LIBRARIES} ${Boost_LIBRARIES})
-
-install( TARGETS
-  evo
-  one
-  duo
-  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
+configure_file(aero-teraranger.service.in aero-teraranger.service)
