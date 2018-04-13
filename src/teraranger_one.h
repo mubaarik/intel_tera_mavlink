@@ -59,7 +59,7 @@ public:
 
   std::string portname_;
   //std::string frame_id_;
-  void init();
+  int init();
   void run();
   void shutdown();
 };
