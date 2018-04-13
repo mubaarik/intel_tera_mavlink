@@ -1,0 +1,6 @@
+[submodule "modules/c_library_v2"]
+	path = modules/c_library_v2
+	url = https://github.com/mavlink/c_library_v2.git
+[submodule "modules/serial"]
+	path = modules/serial
+	url = https://github.com/wjwwood/serial.git
