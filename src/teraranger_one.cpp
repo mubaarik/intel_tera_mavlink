@@ -164,12 +164,3 @@ void TerarangerOne::shutdown(){
 }
 
 } // namespace teraranger
-
-int main(int argc, char **argv)
-{
-  ros::init(argc, argv, "teraranger_one");
-  teraranger::TerarangerOne one;
-  one.spin();
-
-  return 0;
-}
