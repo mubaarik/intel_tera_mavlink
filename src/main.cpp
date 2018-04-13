@@ -3,7 +3,7 @@
 
 int main (int argc, char *argv[])
 {
-	TerarangerOne _teraOne;
+	teraranger::TerarangerOne _teraOne;
 	_teraOne.init()
 	_teraOne.run()
 	_teraOne.shutdown();
