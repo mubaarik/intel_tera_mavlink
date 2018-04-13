@@ -24,6 +24,8 @@
 #define CMD_BYTE_LENGTH 1
 #define MAVLINK_TCP_IP "127.0.0.1"
 #define MAVLINK_TCP_PORT 5760
+#define MAX_RANGE 14.0
+#define MIN_RANGE .2
 
 namespace teraranger
 {
@@ -57,6 +59,7 @@ public:
 
   std::string portname_;
   //std::string frame_id_;
+  void init();
   void run();
   void shutdown();
 };

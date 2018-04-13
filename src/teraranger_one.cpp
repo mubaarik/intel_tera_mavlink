@@ -99,11 +99,11 @@ void TerarangerOne::serialDataCallback(uint8_t single_character)
         final_range = std::numeric_limits<float>::infinity();
       }
       // Enforcing min and max range
-      else if(float_range > range_msg.max_range)
+      else if(float_range > MAX_RANGE)
       {
         final_range = std::numeric_limits<float>::infinity();
       }
-      else if(float_range < range_msg.min_range)
+      else if(float_range < MIN_RANGE)
       {
         final_range = -std::numeric_limits<float>::infinity();
       }
@@ -115,12 +115,12 @@ void TerarangerOne::serialDataCallback(uint8_t single_character)
       //TODO: Publish mavlink here
       mavlink_distance_sensor_t msg;
       //msg.time_boot_ms
-      uint16_t range;
-      range = (uint16_t)(final_range*100)
+      uint16_t _range;
+      _range = (uint16_t)(final_range*100);
 
       msg.min_distance = 20;
       msg.max_distance = 1400;
-      msg.current_distance=final_range; /*< Current distance reading*/
+      msg.current_distance=_range; /*< Current distance reading*/
       msg.type=2; /*< Type from MAV_DISTANCE_SENSOR enum.*/
       msg.id=0; /*< Onboard ID of the sensor*/
       msg.orientation=8; /*< Direction the sensor faces from MAV_SENSOR_ORIENTATION enum.*/
