@@ -165,6 +165,7 @@ void TerarangerOne::run(){
      else
      {
        ERROR("Timeout or error while reading serial");
+       DEBUG("Timeout or error while reading serial");
      }
    }
 
