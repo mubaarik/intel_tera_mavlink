@@ -162,6 +162,7 @@ void TerarangerOne::run(){
       DEBUG("RUNNING");
      if(serial_port_.read(buffer, 1))
      {
+      DEBUG("ENTERING THE CALLBACK!");
        serialDataCallback(buffer[0]);
      }
      else
