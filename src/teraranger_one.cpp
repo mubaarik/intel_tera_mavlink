@@ -152,6 +152,7 @@ void TerarangerOne::setMode(const char *c)
   {
     ERROR("Timeout or error while reading serial");
   }
+  DEBUG("finished setting the MODE(defualt: PRECISE_MODE)");
   serial_port_.flushOutput();
 }
 void TerarangerOne::run(){
@@ -170,8 +171,9 @@ void TerarangerOne::run(){
        ERROR("Timeout or error while reading serial");
        DEBUG("Timeout or error while reading serial");
      }
-     DEBUG("ENDED STARTED!");
+     
    }
+   DEBUG("ENDED STARTED!");
 
 }
 void TerarangerOne::shutdown(){
