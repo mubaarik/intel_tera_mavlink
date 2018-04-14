@@ -40,6 +40,7 @@ TerarangerOne::~TerarangerOne()
 }
 int TerarangerOne::init(){
   _mavlink = new Mavlink_TCP();
+  DEBUG('initialing mavlink');
   if (!_mavlink) {
     ERROR("No memory to allocate Mavlink_TCP");
     goto mavlink_memory_error;
@@ -75,12 +76,14 @@ void TerarangerOne::serialDataCallback(uint8_t single_character)
   }
   else if (buffer_ctr >= 1 && buffer_ctr < BUFFER_SIZE-1)
   {
+    DEBUG('Filling the buffer');
     input_buffer[buffer_ctr] = single_character;
     buffer_ctr++;
     return;
   }
   if (buffer_ctr == BUFFER_SIZE-1)
   {
+    DEBUG('Filling the buffer');
     input_buffer[buffer_ctr] = single_character;
     uint8_t crc = HelperLib::crc8(input_buffer, BUFFER_SIZE-1);
     if(crc == input_buffer[BUFFER_SIZE-1])
@@ -126,7 +129,9 @@ void TerarangerOne::serialDataCallback(uint8_t single_character)
       msg.id=0; /*< Onboard ID of the sensor*/
       msg.orientation=8; /*< Direction the sensor faces from MAV_SENSOR_ORIENTATION enum.*/
       msg.covariance=7; /*< Measurement covariance in centimeters, 0 for unknown / invalid readings*/
+      DEBUG("Range to be sent is: %u", _range);
       _mavlink->distance_sensor_msg_write(&msg);
+
     }
     else
     {
