@@ -2,7 +2,7 @@
 
 namespace teraranger
 {
-static volatile bool _should_run;
+bool _should_run;
 TerarangerOne::TerarangerOne()
 {
   
