@@ -156,8 +156,10 @@ void TerarangerOne::setMode(const char *c)
 }
 void TerarangerOne::run(){
   static uint8_t buffer[1];
+  DEBUG("LOOP STARTED!");
    while(_should_run);
    {
+      DEBUG("RUNNING");
      if(serial_port_.read(buffer, 1))
      {
        serialDataCallback(buffer[0]);
@@ -167,6 +169,7 @@ void TerarangerOne::run(){
        ERROR("Timeout or error while reading serial");
        DEBUG("Timeout or error while reading serial");
      }
+     DEBUG("ENDED STARTED!")
    }
 
 }
