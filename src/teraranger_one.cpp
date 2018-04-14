@@ -67,6 +67,7 @@ void TerarangerOne::serialDataCallback(uint8_t single_character)
   static uint8_t input_buffer[BUFFER_SIZE];
   static int buffer_ctr = 0;
   static int seq_ctr = 0;
+  DEBUG("Running the callback");
 
   if (single_character == 'T' && buffer_ctr == 0)
   {
