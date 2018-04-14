@@ -169,7 +169,7 @@ void TerarangerOne::run(){
        ERROR("Timeout or error while reading serial");
        DEBUG("Timeout or error while reading serial");
      }
-     DEBUG("ENDED STARTED!")
+     DEBUG("ENDED STARTED!");
    }
 
 }
