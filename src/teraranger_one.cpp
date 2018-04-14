@@ -40,7 +40,7 @@ TerarangerOne::~TerarangerOne()
 }
 int TerarangerOne::init(){
   _mavlink = new Mavlink_TCP();
-  DEBUG('initialing mavlink');
+  DEBUG("Initialing mavlink");
   if (!_mavlink) {
     ERROR("No memory to allocate Mavlink_TCP");
     goto mavlink_memory_error;
@@ -76,14 +76,14 @@ void TerarangerOne::serialDataCallback(uint8_t single_character)
   }
   else if (buffer_ctr >= 1 && buffer_ctr < BUFFER_SIZE-1)
   {
-    DEBUG('Filling the buffer');
+    DEBUG("Filling the buffer");
     input_buffer[buffer_ctr] = single_character;
     buffer_ctr++;
     return;
   }
   if (buffer_ctr == BUFFER_SIZE-1)
   {
-    DEBUG('Filling the buffer');
+    DEBUG("Filling the buffer");
     input_buffer[buffer_ctr] = single_character;
     uint8_t crc = HelperLib::crc8(input_buffer, BUFFER_SIZE-1);
     if(crc == input_buffer[BUFFER_SIZE-1])

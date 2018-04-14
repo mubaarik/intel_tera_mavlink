@@ -69,7 +69,7 @@ int Mavlink_TCP::init(const char *ip, unsigned long port)
 		goto network_bind_error;
 	}
 
-	DEBUG("Mavlink TCP initialized %s:%lu", ip, port);
+	DEBUG("Mavlink TCP initialized for teraranger %s:%lu", ip, port);
 	return 0;
 
 network_bind_error:
