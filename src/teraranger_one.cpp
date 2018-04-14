@@ -158,7 +158,7 @@ void TerarangerOne::setMode(const char *c)
 void TerarangerOne::run(){
   static uint8_t buffer[1];
   DEBUG("LOOP STARTED!");
-   while(_should_run);
+   while(_should_run)
    {
       DEBUG("RUNNING");
      if(serial_port_.read(buffer, 1))
