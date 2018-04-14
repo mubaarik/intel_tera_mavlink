@@ -40,7 +40,7 @@ TerarangerOne::~TerarangerOne()
 }
 int TerarangerOne::init(){
   _mavlink = new Mavlink_TCP();
-  DEBUG("Initialing mavlink");
+  //DEBUG("Initialing mavlink");
   if (!_mavlink) {
     ERROR("No memory to allocate Mavlink_TCP");
     goto mavlink_memory_error;
@@ -67,7 +67,7 @@ void TerarangerOne::serialDataCallback(uint8_t single_character)
   static uint8_t input_buffer[BUFFER_SIZE];
   static int buffer_ctr = 0;
   static int seq_ctr = 0;
-  DEBUG("Running the callback");
+  //DEBUG("Running the callback");
 
   if (single_character == 'T' && buffer_ctr == 0)
   {
@@ -77,14 +77,14 @@ void TerarangerOne::serialDataCallback(uint8_t single_character)
   }
   else if (buffer_ctr >= 1 && buffer_ctr < BUFFER_SIZE-1)
   {
-    DEBUG("Filling the buffer");
+    //DEBUG("Filling the buffer");
     input_buffer[buffer_ctr] = single_character;
     buffer_ctr++;
     return;
   }
   if (buffer_ctr == BUFFER_SIZE-1)
   {
-    DEBUG("Filling the buffer");
+    //DEBUG("Filling the buffer");
     input_buffer[buffer_ctr] = single_character;
     uint8_t crc = HelperLib::crc8(input_buffer, BUFFER_SIZE-1);
     if(crc == input_buffer[BUFFER_SIZE-1])
@@ -123,7 +123,7 @@ void TerarangerOne::serialDataCallback(uint8_t single_character)
       uint16_t _range;
       _range = (uint16_t)(final_range*100);
 
-      msg.min_distance = 20;
+      msg.min_distance = 10;
       msg.max_distance = 1400;
       msg.current_distance=_range; /*< Current distance reading*/
       msg.type=2; /*< Type from MAV_DISTANCE_SENSOR enum.*/
@@ -157,23 +157,23 @@ void TerarangerOne::setMode(const char *c)
 }
 void TerarangerOne::run(){
   static uint8_t buffer[1];
-  DEBUG("LOOP STARTED!");
+  //DEBUG("LOOP STARTED!");
    while(_should_run)
    {
-      DEBUG("RUNNING");
+      //DEBUG("RUNNING");
      if(serial_port_.read(buffer, 1))
      {
-      DEBUG("ENTERING THE CALLBACK!");
+      //DEBUG("ENTERING THE CALLBACK!");
        serialDataCallback(buffer[0]);
      }
      else
      {
        ERROR("Timeout or error while reading serial");
-       DEBUG("Timeout or error while reading serial");
+       //DEBUG("Timeout or error while reading serial");
      }
      
    }
-   DEBUG("ENDED STARTED!");
+   //DEBUG("ENDED STARTED!");
 
 }
 void TerarangerOne::shutdown(){
