@@ -582,8 +582,11 @@ Serial::SerialImpl::read (uint8_t *buf, size_t size)
         // Disconnected devices, at least on Linux, show the
         // behavior that they are always ready to read immediately
         // but reading returns nothing.
-        throw SerialException ("device reports readiness to read but "
+        printf("device reports readiness to read but "
                                "returned no data (device disconnected?)");
+        continue;
+        //throw SerialException ("device reports readiness to read but "
+        //                       "returned no data (device disconnected?)");
       }
       // Update bytes_read
       bytes_read += static_cast<size_t> (bytes_read_now);
