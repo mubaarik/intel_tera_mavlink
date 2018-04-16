@@ -123,9 +123,9 @@ Serial::read_ (uint8_t *buffer, size_t size)
 size_t
 Serial::read (uint8_t *buffer, size_t size)
 {
-  printf("Before thread lock");
+  //printf("Before thread lock");
   ScopedReadLock lock(this->pimpl_);
-  printf("after threadkkk");
+  //printf("after threadkkk");
   return this->pimpl_->read (buffer, size);
 }
 
