@@ -1,7 +1,7 @@
 #include "teraranger_one.h"
 #include "log.h"
 
-int main (int argc, char *argv[])
+int main ()
 {
 	teraranger::TerarangerOne _teraOne;
 	int ret = _teraOne.init();
