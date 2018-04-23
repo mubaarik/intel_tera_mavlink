@@ -57,7 +57,7 @@ public:
   struct timeval tp;
   uint64_t _update_time=0;
   uint64_t _current_time=0;
-  uint64_t _offset_timestamp_usec=0;
+  uint64_t _offset_timestamp_msec=0;
 
 
   Mavlink_TCP *_mavlink;

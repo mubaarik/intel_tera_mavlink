@@ -69,7 +69,7 @@ static void _highres_imu_msg_callback(const mavlink_highres_imu_t *msg, void *da
 void TerarangerOne::timerUpdate(uint64_t time){
   gettimeofday(&tp, NULL);
   _update_time = tp.tv_sec * 1000 + tp.tv_usec / 1000;
-  _offset_timestamp_msec = msg->time_usec/1000;
+  _offset_timestamp_msec = time/1000;
 
 
 }
