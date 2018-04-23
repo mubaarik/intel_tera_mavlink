@@ -88,9 +88,42 @@ Mavlink_TCP::~Mavlink_TCP()
 	close(_fd);
 	_fd = -1;
 }
-void Mavlink_TCP::handle_read(){
-	int x = 0;
+void Mavlink_TCP::handle_read()
+{
+	socklen_t addrlen = sizeof(sockaddr);
+	uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+	ssize_t ret = ::recvfrom(_fd, buffer, sizeof(buffer), 0, (struct sockaddr *)&_sockaddr, &addrlen);
+
+	if (ret < 1) {
+		return;
+	}
+
+	mavlink_message_t msg;
+	mavlink_status_t status;
+
+	for (int i = 0; i < ret; i++) {
+		if (mavlink_parse_char(MAVLINK_COMM_0, buffer[i], &msg, &status)) {
+			_handle(&msg);
+		}
+	}
 }
+
+void Mavlink_TCP::_handle(mavlink_message_t *msg)
+{
+	if (msg->msgid == MAVLINK_MSG_ID_HIGHRES_IMU && _highres_imu_msg_callback) {
+		mavlink_highres_imu_t highres_imu;
+		mavlink_msg_highres_imu_decode(msg, &highres_imu);
+
+		_highres_imu_msg_callback(&highres_imu);
+		return;
+	}
+}
+void Mavlink_TCP::highres_imu_msg_subscribe(void (*callback)(const mavlink_highres_imu_t *msg))
+{
+	_highres_imu_msg_callback = callback;
+}
+
+
 bool Mavlink_TCP::handle_canwrite()
 {
 	return false;

@@ -61,6 +61,12 @@ int TerarangerOne::init(){
     return -1;
 
 }
+static void _highres_imu_msg_callback(const mavlink_highres_imu_t *msg)
+{
+  gettimeofday(&tp, NULL);
+  _update_time = tp.tv_sec * 1000 + tp.tv_usec / 1000;
+  _offset_timestamp_usec = msg->time_usec;
+}
 
 void TerarangerOne::serialDataCallback(uint8_t single_character)
 {
@@ -118,11 +124,16 @@ void TerarangerOne::serialDataCallback(uint8_t single_character)
       }
       // ROS_DEBUG("[%s] all good %.3f m", ros::this_node::getName().c_str(), range_msg.range);
       //TODO: Publish mavlink here
+      gettimeofday(&tp, NULL);
+      _current_time = tp.tv_sec * 1000 + tp.tv_usec / 1000;
+
+
+
       mavlink_distance_sensor_t msg;
       //msg.time_boot_ms
       uint16_t _range;
       _range = (uint16_t)(final_range*100);
-
+      msg.time_boot_ms = (uint32_t)(_offset_timestamp_usec+(_current_time-_update_time));
       msg.min_distance = 10;
       msg.max_distance = 1400;
       msg.current_distance=_range; /*< Current distance reading*/
@@ -157,6 +168,7 @@ void TerarangerOne::setMode(const char *c)
 }
 void TerarangerOne::run(){
   static uint8_t buffer[1];
+  _mavlink->highres_imu_msg_subscribe(_highres_imu_msg_callback);
   //DEBUG("LOOP STARTED!");
    while(_should_run)
    {
