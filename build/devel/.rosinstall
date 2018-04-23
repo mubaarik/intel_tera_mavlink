@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/user/intel_tera_mavlink/build/devel/setup.sh

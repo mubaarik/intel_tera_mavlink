@@ -1,0 +1,8 @@
+prefix=/home/user/intel_tera_mavlink/build/devel
+
+Name: serial
+Description: Description of serial
+Version: 1.2.1
+Cflags: -I/usr/local/include -I/home/user/intel_tera_mavlink/serial/include
+Libs: -L/home/user/intel_tera_mavlink/build/devel/lib /usr/local/lib/libserial.so /usr/lib/x86_64-linux-gnu/librt.so /usr/lib/x86_64-linux-gnu/libpthread.so -lserial -lrt -lpthread
+Requires: 

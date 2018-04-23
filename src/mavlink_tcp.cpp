@@ -112,7 +112,7 @@ int Mavlink_TCP::distance_sensor_msg_write(mavlink_distance_sensor_t *ds_msg)
 
 	if (r != len) {
 		ERROR("mavlink_distance_sensor_t was send incomplete");
-		return -1;
+		return -2;
 	}
 
 	return 0;
