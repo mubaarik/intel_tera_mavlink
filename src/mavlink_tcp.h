@@ -58,7 +58,7 @@ public:
 private:
 	struct sockaddr_in _sockaddr;
 
-	//void _handle(mavlink_message_t *msg);
+	void _handle(mavlink_message_t *msg);
 
 	void (*_highres_imu_msg_callback)(const mavlink_highres_imu_t *msg, void *data) = NULL;
 	const void *_highres_imu_msg_callback_data;
