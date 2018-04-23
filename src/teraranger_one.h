@@ -45,6 +45,7 @@ public:
   virtual ~TerarangerOne();
 
   void serialDataCallback(uint8_t data);
+  void timerUpdate(uint64_t time);
 
   //void dynParamCallback(const teraranger::TerarangerOneConfig &config, uint32_t level);
 

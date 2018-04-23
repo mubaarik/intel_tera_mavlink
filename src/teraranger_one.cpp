@@ -61,12 +61,19 @@ int TerarangerOne::init(){
     return -1;
 
 }
-static void _highres_imu_msg_callback(const mavlink_highres_imu_t *msg)
+static void _highres_imu_msg_callback(const mavlink_highres_imu_t *msg, void *data)
 {
+  TerarangerOne * tera =  (TerarangerOne *)(data);
+  tera->timerUpdate(msg->time_usec);
+}
+void TerarangerOne::timerUpdate(uint64_t time){
   gettimeofday(&tp, NULL);
   _update_time = tp.tv_sec * 1000 + tp.tv_usec / 1000;
-  _offset_timestamp_usec = msg->time_usec;
+  _offset_timestamp_msec = msg->time_usec/1000;
+
+
 }
+
 
 void TerarangerOne::serialDataCallback(uint8_t single_character)
 {
@@ -168,7 +175,7 @@ void TerarangerOne::setMode(const char *c)
 }
 void TerarangerOne::run(){
   static uint8_t buffer[1];
-  _mavlink->highres_imu_msg_subscribe(_highres_imu_msg_callback);
+  _mavlink->highres_imu_msg_subscribe(_highres_imu_msg_callback,this);
   //DEBUG("LOOP STARTED!");
    while(_should_run)
    {

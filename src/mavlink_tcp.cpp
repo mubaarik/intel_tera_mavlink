@@ -114,15 +114,15 @@ void Mavlink_TCP::_handle(mavlink_message_t *msg)
 		mavlink_highres_imu_t highres_imu;
 		mavlink_msg_highres_imu_decode(msg, &highres_imu);
 
-		_highres_imu_msg_callback(&highres_imu);
+		_highres_imu_msg_callback(&highres_imu, (void *)_highres_imu_msg_callback_data);
 		return;
 	}
 }
-void Mavlink_TCP::highres_imu_msg_subscribe(void (*callback)(const mavlink_highres_imu_t *msg))
+void Mavlink_TCP::highres_imu_msg_subscribe(void (*callback)(const mavlink_highres_imu_t *msg, void *data), const void *data)
 {
 	_highres_imu_msg_callback = callback;
+	_highres_imu_msg_callback_data = data;
 }
-
 
 bool Mavlink_TCP::handle_canwrite()
 {
