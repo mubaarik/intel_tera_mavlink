@@ -51,17 +51,17 @@ public:
 	void handle_read() override;
 	bool handle_canwrite() override;
 
-	//void highres_imu_msg_subscribe(void (*callback)(const mavlink_highres_imu_t *msg, void *data), const void *data);
+	void highres_imu_msg_subscribe(void (*callback)(const mavlink_highres_imu_t *msg, void *data), const void *data);
 
 	int distance_sensor_msg_write(mavlink_distance_sensor_t *msg);
 	//int set_highres_rate(float interval_us);
 private:
 	struct sockaddr_in _sockaddr;
 
-	//void _handle(mavlink_message_t *msg);
+	void _handle(mavlink_message_t *msg);
 
-	//void (*_highres_imu_msg_callback)(const mavlink_highres_imu_t *msg, void *data) = NULL;
-	//const void *_highres_imu_msg_callback_data;
+	void (*_highres_imu_msg_callback)(const mavlink_highres_imu_t *msg, void *data) = NULL;
+	const void *_highres_imu_msg_callback_data;
 
 	const uint8_t _system_id = 1; // TODO default is 1, but check with heartbeat
 	const uint8_t _component_id = MAV_COMP_ID_PERIPHERAL;

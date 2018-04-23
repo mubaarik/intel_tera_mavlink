@@ -9,6 +9,7 @@
 #include "mavlink_tcp.h"
 #include <string>
 #include <serial/serial.h>
+#include <sys/time.h>
 //#include <teraranger/TerarangerOneConfig.h>
 #include "log.h"
 #include "helper_lib.h"
@@ -44,6 +45,7 @@ public:
   virtual ~TerarangerOne();
 
   void serialDataCallback(uint8_t data);
+  void timerUpdate(uint64_t time);
 
   //void dynParamCallback(const teraranger::TerarangerOneConfig &config, uint32_t level);
 
@@ -51,6 +53,12 @@ public:
   void setMode(const char *c);
   unsigned long mavlink_tcp_port = MAVLINK_TCP_PORT;
   const char *mavlink_tcp_ip = MAVLINK_TCP_IP;
+
+  struct timeval tp;
+  uint64_t _update_time=0;
+  uint64_t _current_time=0;
+  uint64_t _offset_timestamp_msec=0;
+
 
   Mavlink_TCP *_mavlink;
 
