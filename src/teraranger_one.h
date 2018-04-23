@@ -9,7 +9,7 @@
 #include "mavlink_tcp.h"
 #include <string>
 #include <serial/serial.h>
-# include <sys/time.h>
+#include <sys/time.h>
 //#include <teraranger/TerarangerOneConfig.h>
 #include "log.h"
 #include "helper_lib.h"
@@ -52,7 +52,6 @@ public:
   void setMode(const char *c);
   unsigned long mavlink_tcp_port = MAVLINK_TCP_PORT;
   const char *mavlink_tcp_ip = MAVLINK_TCP_IP;
-  <sys/time.h>
 
   struct timeval tp;
   uint64_t _update_time=0;
