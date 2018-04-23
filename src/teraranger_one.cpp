@@ -140,7 +140,7 @@ void TerarangerOne::serialDataCallback(uint8_t single_character)
       //msg.time_boot_ms
       uint16_t _range;
       _range = (uint16_t)(final_range*100);
-      msg.time_boot_ms = (uint32_t)(_offset_timestamp_usec+(_current_time-_update_time));
+      msg.time_boot_ms = (uint32_t)(_offset_timestamp_msec+(_current_time-_update_time));
       msg.min_distance = 10;
       msg.max_distance = 1400;
       msg.current_distance=_range; /*< Current distance reading*/
