@@ -145,7 +145,7 @@ void TerarangerOne::serialDataCallback(uint8_t single_character)
       msg.current_distance=_range; /*< Current distance reading*/
       msg.type=2; /*< Type from MAV_DISTANCE_SENSOR enum.*/
       msg.id=0; /*< Onboard ID of the sensor*/
-      msg.orientation=8; /*< Direction the sensor faces from MAV_SENSOR_ORIENTATION enum.*/
+      msg.orientation=25; /*< Direction the sensor faces from MAV_SENSOR_ORIENTATION enum.*/
       msg.covariance=7; /*< Measurement covariance in centimeters, 0 for unknown / invalid readings*/
       DEBUG("Range to be sent is: %u", _range);
       int status = _mavlink->distance_sensor_msg_write(&msg);
