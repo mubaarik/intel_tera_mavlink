@@ -2,8 +2,10 @@
 
 ## Installation
 #### Installing Serial Lib
-`git clone https://github.com/wjwwood/serial.git`
-`cd serial`
+```
+git clone https://github.com/wjwwood/serial.git
+cd serial
+```
 
 #### Installing the driver
 ```
