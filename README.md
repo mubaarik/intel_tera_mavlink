@@ -1,3 +1,5 @@
+NOTE: Documented and up to date version of this code is hosted on MIT interprice github.
+
 # intel_tera_mavlink
 
 ## Installation
