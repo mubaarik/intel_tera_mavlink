@@ -1,4 +1,4 @@
-NOTE: Documented and up to date version of this code is hosted on MIT interprice github.
+NOTE: Documented and up to date version of this code is hosted on MIT enterprise github.
 
 # intel_tera_mavlink
 
